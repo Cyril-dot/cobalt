@@ -23,6 +23,7 @@ RUN apk add --no-cache git && \
     git init -q && \
     git config user.email "deploy@render.com" && \
     git config user.name "render" && \
+    git remote add origin https://github.com/Cyril-dot/cobalt.git && \
     git add -A && \
     git commit -q -m "render deploy" --allow-empty && \
     chown -R node:node /app/.git
