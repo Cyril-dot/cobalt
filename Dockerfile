@@ -19,6 +19,14 @@ WORKDIR /app
 
 COPY --from=build --chown=node:node /prod/api /app
 
+RUN apk add --no-cache git && \
+    git init -q && \
+    git config user.email "deploy@render.com" && \
+    git config user.name "render" && \
+    git add -A && \
+    git commit -q -m "render deploy" --allow-empty && \
+    chown -R node:node /app/.git
+
 USER node
 
 EXPOSE 9000
